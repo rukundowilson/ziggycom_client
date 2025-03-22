@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("ziggycom.cleverapps.io/ ")
+      .get("https://ziggycom.cleverapps.io/ ")
       .then((response) => {
         console.log(response.data);
         setData(response.data);
