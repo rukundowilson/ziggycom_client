@@ -15,6 +15,7 @@ export default function Dashboard(){
     const [numberInactiveEmployees,setNumberInactiveEmployees] = useState(0)
     const [expectedPayments,setExpectedPayments] = useState(0);
     const [toastElements,setToastEl] = useState({});
+    const base_url = "https://ziggycom.cleverapps.io";
 
     const use_location = useLocation();
     useEffect(()=>{
@@ -25,7 +26,7 @@ export default function Dashboard(){
         })    
         const numberDepartments = async () => {
           try {
-            const response = await fetch('http://localhost:8080/departments', {
+            const response = await fetch(`${base_url}/departments`, {
               method: 'GET',
               credentials: 'include',
             });
@@ -53,7 +54,7 @@ export default function Dashboard(){
 
         const numberOfEmployees = async ()=>{
           try{
-            const response = await fetch('http://localhost:8080/all/employees',{
+            const response = await fetch(`${base_url}/all/employees`,{
 
               method : "GET",
               credentials : "include"
