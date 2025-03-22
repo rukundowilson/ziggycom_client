@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/")
+      .get("ziggycom.cleverapps.io/ ")
       .then((response) => {
         console.log(response.data);
         setData(response.data);

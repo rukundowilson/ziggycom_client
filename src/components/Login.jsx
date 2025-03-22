@@ -10,7 +10,7 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'https://ziggycom.cleverapps.io',
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json'
