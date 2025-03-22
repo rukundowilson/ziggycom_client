@@ -5,6 +5,7 @@ import { Landmark, Home, Users, DollarSign, Building2, UserPlus, Bell, Menu, X,U
 export default function DashboardLayOut() {
   const navigate = useNavigate();
   const location = useLocation();
+  const base_url = "https://ziggycom.cleverapps.io"
 
   useEffect(() => {
     setCurrentView(location.pathname);
@@ -23,7 +24,7 @@ export default function DashboardLayOut() {
     // Simulated authentication check
     const checkAuthentication = () => {
       // In a real app, this would be an actual API call
-      fetch('http://localhost:8080/isloggedin', {
+      fetch(`${base_url}/isloggedin`, {
         method: 'GET',
         credentials: 'include'
       })
