@@ -32,7 +32,7 @@ export default function Dashboard(){
             });
         
             if (response.status === 401) {
-              window.location.href = '/login';
+              window.location.href = '/';
               throw new Error("Unauthorized");
             }
         
