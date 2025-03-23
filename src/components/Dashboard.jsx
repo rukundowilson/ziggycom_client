@@ -43,7 +43,7 @@ export default function Dashboard(){
         
             const data = await response.json();
             console.log("Server Response:", data);
-            setnumberOfDeps(data.numberOfDeps || 0); // Fallback to 0
+            setnumberOfDeps(data.numberOfDeps || 0);
           } catch (error) {
             console.error('Error fetching number of departments:', error);
           }
