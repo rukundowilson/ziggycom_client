@@ -24,65 +24,70 @@ export default function Dashboard(){
           email : use_location?.state?.email
 
         })    
-        const numberDepartments = async () => {
+       const numberDepartments = async () => {
           try {
             const response = await fetch(`${base_url}/departments`, {
               method: 'GET',
               credentials: 'include',
             });
         
+            if (response.status === 401) {
+              window.location.href = '/login';
+              throw new Error("Unauthorized");
+            }
+        
             if (!response.ok) {
               console.error(`Server responded with status: ${response.status}`);
               return;
             }
-            if (response.status === 401) {
-              window.location.href('/login')
-              throw new Error("Unauthorized");
-              
-            }
         
             const data = await response.json();
             console.log("Server Response:", data);
-            setnumberOfDeps(data.numberOfDeps)
-            return data;
+            setnumberOfDeps(data.numberOfDeps || 0); // Fallback to 0
           } catch (error) {
             console.error('Error fetching number of departments:', error);
-            throw error;
           }
         };
-        numberDepartments();
-
-        const numberOfEmployees = async ()=>{
-          try{
-            const response = await fetch(`${base_url}/all/employees`,{
-
-              method : "GET",
-              credentials : "include"
-            })
-            if (!response.ok){
-              console.error(`Server responded with status: ${response.status}`);
-              return
+        
+        const numberOfEmployees = async () => {
+          try {
+            const response = await fetch(`${base_url}/all/employees`, {
+              method: "GET",
+              credentials: "include",
+            });
+        
+            if (response.status === 401) {
+              window.location.href = '/login';
+              throw new Error("Unauthorized");
             }
+        
+            if (!response.ok) {
+              console.error(`Server responded with status: ${response.status}`);
+              return;
+            }
+        
             const employees = await response.json();
-            setNumberOfEmployees(employees.numberOfEmployees)
+            setNumberOfEmployees(employees.numberOfEmployees || 0); // Fallback to 0
             console.log(employees);
-            const activeCount = employees.result.filter(employee => employee.status === 'Active').length;
-            const inactiveCount = employees.result.filter(employee => employee.status === 'Inactive').length;
-            const sumSalaries = employees.result.reduce((total, employee) => {
+        
+            const activeCount = employees.result?.filter(employee => employee.status === 'Active').length || 0;
+            const inactiveCount = employees.result?.filter(employee => employee.status === 'Inactive').length || 0;
+            const sumSalaries = employees.result?.reduce((total, employee) => {
               if (employee.status === 'Active') {
                 return total + parseFloat(employee.basic_salary);
               }
               return total;
-            }, 0);
-            setExpectedPayments(sumSalaries)
+            }, 0) || 0;
+        
+            setExpectedPayments(sumSalaries);
             setNumberActiveEmployees(activeCount);
             setNumberInactiveEmployees(inactiveCount);
-            
+        
+          } catch (err) {
+            console.log(`Got an error while interacting with API /all/employees: ${err}`);
           }
-          catch(err){
-            console.log(`got an error while interacting with api all/employees ${err}`)
-          }
-        }
+        };
+
         numberOfEmployees();        
       },[])
       const onClose = ()=>{
