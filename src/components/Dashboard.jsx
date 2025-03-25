@@ -31,7 +31,7 @@ export default function Dashboard() {
                 });
 
                 if (response.status === 401) {
-                    window.location.href = '/';
+                    window.location.href = '/login';
                     throw new Error("Unauthorized");
                 }
 
@@ -56,7 +56,7 @@ export default function Dashboard() {
                 });
 
                 if (response.status === 401) {
-                    window.location.href = '/';
+                    window.location.href = '/user/dashboard';
                     throw new Error("Unauthorized");
                 }
 
