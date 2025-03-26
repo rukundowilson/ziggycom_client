@@ -91,7 +91,7 @@ export default function Dashboard() {
     }, []);
 
     const onClose = () => {
-        setToastEl({});import DashboardLayOut from "./DashboardLayOut";
+        setToastEl({});
 import DashboardHighlights from "./Highlights";
 import { useState,useEffect } from "react";
 import SalaryTransactions from "./RecentActivity";
