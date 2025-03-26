@@ -36,14 +36,17 @@ export default function Login() {
     event.preventDefault();
     setError("");
 
-    try {
-      const response = await axiosInstance.post('/login', credentials);      
+     try {
+      const response = await axios.post('/login', credentials);
       const { message, redirectPath, user } = response.data;
 
+      // Store user data in localStorage
       localStorage.setItem('user', JSON.stringify(user));
-      navigate_with_state()
-      console.log(message,'got it? ')
 
+      // Navigate to the desired path with state
+      navigate(redirectPath, { state: { user } });
+
+      console.log(message, 'got it?');
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message || "Login failed");
