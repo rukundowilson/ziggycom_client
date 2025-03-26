@@ -20,39 +20,38 @@ export default function DashboardLayOut() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    // Simulated authentication check
-    const checkAuthentication = () => {
-      // In a real app, this would be an actual API call
-      fetch(`${baseURL}/isloggedin`, {
-        method: 'GET',
-        credentials: 'include'
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Response:", data);
-        const { loggedIn, user } = data;
-        if (loggedIn) {
-          setClient(prev => ({
-            ...prev,
-            name: user.username,
-            email: user.email
-          }));
-          setIsAuthenticated(true);
-          console.log(`autherntication success ${user}`)
-        }
-        else{
-          console.log("not loggedin",data)
-        }
-      })
-      .catch(error => {
-        console.error("Authentication error:", error);
+useEffect(() => {
+  // Simulated authentication check
+  const checkAuthentication = () => {
+    // In a real app, this would be an actual API call
+    fetch(`${baseURL}/isloggedin`, {
+      method: 'GET',
+      credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Response:", data);
+      const { loggedIn, user, message } = data;
+      if (loggedIn) {
+        setClient(prev => ({
+          ...prev,
+          name: user.username,
+          email: user.email
+        }));
+        setIsAuthenticated(true);
+        console.log(`Authentication success: ${user.username}`);
+      } else {
+        console.log("Not logged in:", message);
         setIsAuthenticated(false);
-      });
-    };
-    checkAuthentication();
-  }, []);
-
+      }
+    })
+    .catch(error => {
+      console.error("Authentication error:", error);
+      setIsAuthenticated(false);
+    });
+  };
+  checkAuthentication();
+}, []);
   
   const handleLogout = () => {
     // Simulated logout
