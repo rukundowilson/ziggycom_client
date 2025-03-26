@@ -56,7 +56,7 @@ export default function DashboardLayOut() {
   
   const handleLogout = () => {
     // Simulated logout
-    fetch(`${baseURL)/logout`, {
+    fetch(`${baseURL}/logout`, {
       method: 'POST',
       credentials: 'include'
     })
