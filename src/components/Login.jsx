@@ -32,20 +32,17 @@ export default function Login() {
     setCredentials(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (event) => {
+const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
+
     const axiosInstance = axios.create({
     baseURL: 'https://ziggycom.cleverapps.io',
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json'
     }
-  });
-
-const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError("");
+    });
 
     try {
       const response = await axiosInstance.post('/login', credentials);      
