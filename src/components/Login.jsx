@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Toast from './Toast';
+
 export default function Login() {
   const [credentials, setCredentials] = useState({ 
     email: '', 
@@ -18,13 +19,14 @@ export default function Login() {
   });
 
   const use_navigate = useNavigate();
-  const navigate_with_state = ()=>{
-    use_navigate("/user/dashboard",{
-      state : {
-        email : credentials.email,
-        message : `welcome back user`
+  
+  const navigate_with_state = () => {
+    use_navigate("/user/dashboard", {
+      state: {
+        email: credentials.email,
+        message: `welcome back user`
       }
-    })    
+    });
   }
 
   const handleInputChange = (event) => {
@@ -32,17 +34,18 @@ export default function Login() {
     setCredentials(prev => ({ ...prev, [name]: value }));
   };
 
-const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
+    console.log("Form submitted", credentials); // Debugging log
     try {
-      const response = await axiosInstance.post('/login', credentials);      
+      const response = await axiosInstance.post('/login', credentials);
+      console.log("API response received", response); // Debugging log
       const { message, redirectPath, user } = response.data;
 
       localStorage.setItem('user', JSON.stringify(user));
-      navigate_with_state()
-      console.log(message,'got it? ')
-
+      navigate_with_state();
+      console.log(message, 'got it?');
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message || "Login failed");
@@ -55,9 +58,6 @@ const handleSubmit = async (event) => {
       console.error("Login error:", error);
     }
   };
-  };
-
-  
 
     // toast handlers
   return (
