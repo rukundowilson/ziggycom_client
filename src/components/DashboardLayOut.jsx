@@ -5,7 +5,7 @@ import { Landmark, Home, Users, DollarSign, Building2, UserPlus, Bell, Menu, X,U
 export default function DashboardLayOut() {
   const navigate = useNavigate();
   const location = useLocation();
-  const base_url = "https://ziggycom.cleverapps.io"
+  const baseURL = "https://ziggycom.cleverapps.io"
 
   useEffect(() => {
     setCurrentView(location.pathname);
@@ -24,7 +24,7 @@ export default function DashboardLayOut() {
     // Simulated authentication check
     const checkAuthentication = () => {
       // In a real app, this would be an actual API call
-      fetch(`${base_url}/isloggedin`, {
+      fetch(`${baseURL}/isloggedin`, {
         method: 'GET',
         credentials: 'include'
       })
@@ -39,6 +39,10 @@ export default function DashboardLayOut() {
             email: user.email
           }));
           setIsAuthenticated(true);
+          console.log(`autherntication success ${user}`)
+        }
+        else{
+          console.log("not loggedin",data)
         }
       })
       .catch(error => {
@@ -52,7 +56,7 @@ export default function DashboardLayOut() {
   
   const handleLogout = () => {
     // Simulated logout
-    fetch('http://localhost:8080/logout', {
+    fetch(`${baseURL)/logout`, {
       method: 'POST',
       credentials: 'include'
     })
