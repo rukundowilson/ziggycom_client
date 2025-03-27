@@ -12,7 +12,7 @@ export default function Login() {
 
   const axiosInstance = axios.create({
     baseURL: 'https://https://ziggycom.cleverapps.io',
-    withCredentials: true,
+    withCredentials: false,
     headers: {
       'Content-Type': 'application/json'
     }
