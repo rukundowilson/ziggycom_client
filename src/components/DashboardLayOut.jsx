@@ -20,39 +20,42 @@ export default function DashboardLayOut() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-useEffect(() => {
-  // Simulated authentication check
+  useEffect(() => {
   const checkAuthentication = () => {
-    // In a real app, this would be an actual API call
-    fetch(`${baseURL}/isloggedin`, {
-      method: 'GET',
-      credentials: 'include'
+    fetch("https://ziggycom.cleverapps.io/isloggedin", {
+      method: "GET",
+      credentials: "include",
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log("Response:", data);
-      const { loggedIn, user, message } = data;
-      if (loggedIn) {
-        setClient(prev => ({
-          ...prev,
-          name: user.username,
-          email: user.email
-        }));
-        setIsAuthenticated(true);
-        console.log(`Authentication success: ${user.username}`);
-      } else {
-        console.log("Not logged in:", message);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Response:", data);
+        const { loggedIn, user, message } = data;
+        if (loggedIn) {
+          setClient((prev) => ({
+            ...prev,
+            name: user.username,
+            email: user.email,
+          }));
+          setIsAuthenticated(true);
+          console.log(`Authentication success: ${user.username}`);
+        } else {
+          console.log("Not logged in:", message);
+          setIsAuthenticated(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Authentication error:", error);
         setIsAuthenticated(false);
-      }
-    })
-    .catch(error => {
-      console.error("Authentication error:", error);
-      setIsAuthenticated(false);
-    });
+      });
   };
   checkAuthentication();
 }, []);
-  
+
   const handleLogout = () => {
     // Simulated logout
     fetch(`${baseURL}/logout`, {
