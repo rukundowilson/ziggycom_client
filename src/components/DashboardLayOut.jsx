@@ -18,7 +18,7 @@ export default function DashboardLayOut() {
   });
   const [currentView, setCurrentView] = useState('/user/dashboard');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 useEffect(() => {
   // Simulated authentication check
