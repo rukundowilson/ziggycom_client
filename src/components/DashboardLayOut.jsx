@@ -19,42 +19,42 @@ export default function DashboardLayOut() {
   const [currentView, setCurrentView] = useState('/user/dashboard');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
   const checkAuthentication = () => {
-    fetch("https://ziggycom.cleverapps.io/isloggedin", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
+      fetch("https://ziggycom.cleverapps.io/isloggedin", {
+        method: "GET",
+        credentials: "include",
       })
-      .then((data) => {
-        console.log("Response:", data);
-        const { loggedIn, user, message } = data;
-        if (loggedIn) {
-          setClient((prev) => ({
-            ...prev,
-            name: user.username,
-            email: user.email,
-          }));
-          setIsAuthenticated(true);
-          console.log(`Authentication success: ${user.username}`);
-        } else {
-          console.log("Not logged in:", message);
-          setIsAuthenticated(false);
-        }
-      })
-      .catch((error) => {
-        console.error("Authentication error:", error);
-        setIsAuthenticated(false);
-      });
-  };
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Response:", data);
+          const { loggedIn, user, message } = data;
+          if (loggedIn) {
+            setClient((prev) => ({
+              ...prev,
+              name: user.username,
+              email: user.email,
+            }));
+            setIsAuthenticated(true);
+            console.log(`Authentication success: ${user.username}`);
+          } else {
+            console.log("Not logged in:", message);
+            setIsAuthenticated(false);
+            navigate("/login");
+          }
+        })
+        .catch((error) => {
+          console.error("Authentication error:", error);        
+        });
+    };
   checkAuthentication();
-}, []);
+  useEffect(() => {
+    checkAuthentication();
+  }, []);
 
   const handleLogout = () => {
     // Simulated logout
