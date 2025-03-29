@@ -5,7 +5,7 @@ import { Landmark, Home, Users, DollarSign, Building2, UserPlus, Bell, Menu, X,U
 export default function DashboardLayOut() {
   const navigate = useNavigate();
   const location = useLocation();
-  const baseURL = "https://ziggycom.cleverapps.io"
+  const baseURL = "https://ziggycom-backend.onrender.com"
 
   useEffect(() => {
     setCurrentView(location.pathname);
