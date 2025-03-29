@@ -20,7 +20,7 @@ export default function DashboardLayOut() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const checkAuthentication = () => {
-      fetch("https://ziggycom.cleverapps.io/isloggedin", {
+      fetch(`${baseURL}/isloggedin`, {
         method: "GET",
         credentials: "include",
       })
