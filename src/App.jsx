@@ -18,16 +18,14 @@ import EmployeeProfileEdit from './components/EmployeeEdit';
 import CompanyProfile from './components/CompanyProfile';
 import PaymentDashboard_ from './components/PaymentDashboard';
 
-
-
-
 function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const baseURL = "https://ziggycom-backend.onrender.com"
 
   useEffect(() => {
     axios
-      .get("https://ziggycom.cleverapps.io/ ")
+      .get(`${baseURL}`)
       .then((response) => {
         console.log(response.data);
         setData(response.data);
