@@ -10,6 +10,7 @@ const VacancyAndDepartures = () => {
   const [currentPageDepartures, setCurrentPageDepartures] = useState(1);
   const [currentPageVacancies, setCurrentPageVacancies] = useState(1);
   const itemsPerPage = 2;
+  const baseURL = "https://ziggycom-backend.onrender.com"
 
   const formatDate = (dateStr) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -22,7 +23,7 @@ const VacancyAndDepartures = () => {
   const handleVacanciesAndDepartures = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:8080/vacanciesAndDeparturesAPI', {
+      const response = await fetch(`${baseURL}/vacanciesAndDeparturesAPI`, {
         credentials: 'include',
         method: "GET"
       });
