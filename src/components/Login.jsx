@@ -12,7 +12,7 @@ export default function Login() {
 
   const axiosInstance = axios.create({
     baseURL: 'https://ziggycom-backend.onrender.com',
-    withCredentials: false,
+    withCredentials: true,
     headers: {
       'Content-Type': 'application/json'
     }
