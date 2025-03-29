@@ -7,7 +7,7 @@ import Toast from "./Toast";
 import EmployeePaymentTrends from "./Statistics";
 import { useLocation } from "react-router";
 
-const baseURL = "https://ziggycom.cleverapps.io";
+const baseURL = "https://ziggycom-backend.onrender.com";
 
 export default function Dashboard(){
     const [numberOfDeps,setnumberOfDeps] = useState(0)
