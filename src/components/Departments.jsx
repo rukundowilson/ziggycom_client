@@ -18,6 +18,7 @@ const DepartmentNavigation = () => {
   const [priority,setPriority] = useState("");
   const [jobs,setJobs] = useState([])
   const [numberOfWorkers,setNumberOfWorkers] = useState("")
+  const baseURL = "https://ziggycom-backend.onrender.com"
 
   // Add clear message functions
   const clearError = () => setError('');
@@ -25,7 +26,7 @@ const DepartmentNavigation = () => {
 
   const getAllDepartment = async () => { 
     try {
-      const response = await fetch("http://localhost:8080/departments", {
+      const response = await fetch(`${baseURL}/departments`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -65,7 +66,7 @@ const DepartmentNavigation = () => {
   };
   const fetchDepartmentJobs = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/department/${selectedDepartment.id}/all-jobs`,{
+      const response = await fetch(`${baseURL}/${selectedDepartment.id}/all-jobs`,{
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -96,7 +97,7 @@ const DepartmentNavigation = () => {
     }
   
     try {
-      const response = await fetch(`http://localhost:8080/department/${selectedDepartment.id}/jobs`, {
+      const response = await fetch(`${baseURL}/${selectedDepartment.id}/jobs`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -149,7 +150,7 @@ const DepartmentNavigation = () => {
     }
   
     try {
-      const response = await fetch("http://localhost:8080/new/department", {
+      const response = await fetch(`${baseURL}/new/department`, {
         method: 'POST',
         credentials: 'include',
         headers: {
