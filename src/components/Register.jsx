@@ -11,7 +11,8 @@ function Register() {
     // Add new state for OTP
     const [otpValue, setOtp] = useState('');
     const [isOtpVerified,setIsOtpVerified] = useState(false)
-    const [otpIssuccess,setOtpIssuccess] = useState(false)
+    const [otpIssuccess,setOtpIssuccess] = useState(false);
+    const baseURL = "https://ziggycom-backend.onrender.com";
     const [allTheData, setAllTheData] = useState({
         companyName: "",
         companyEmail: "",
@@ -169,7 +170,7 @@ function Register() {
         setIsSubmitting(true);
         try {
             const response = await axios.post(
-                "http://localhost:8080/payroll/new/user",
+                `${baseURL}/payroll/new/user`,
                 allTheData,
                 {
                     headers: {
@@ -211,7 +212,7 @@ function Register() {
 
     const sendOtp = async () => {
         try {
-            const response = await fetch("http://localhost:8080/send-otp", {
+            const response = await fetch(`${baseURL}/send-otp`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -231,7 +232,7 @@ function Register() {
     
     const verifyOtp = async () => {
         try {
-            const response = await fetch("http://localhost:8080/verify-otp", {
+            const response = await fetch(`${baseURL}/verify-otp`, {
                 method: 'POST', // Should be POST, not GET
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
