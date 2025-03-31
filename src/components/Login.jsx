@@ -41,7 +41,7 @@ export default function Login() {
     try {
       const response = await axiosInstance.post('/login', credentials);
       console.log("API response received", response); // Debugging log
-      const { message, redirectPath, user } = response.data;
+      const { message, user } = response.data;
 
       localStorage.setItem('user', JSON.stringify(user));
       navigate_with_state();
