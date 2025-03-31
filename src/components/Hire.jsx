@@ -194,7 +194,7 @@ console.log(allData);
         employee={allData}
       />
 
-      <div className="space-y-12 bg-white shadow-lg container mx-auto w-md max-w-2xl px-4 py-8" >
+      <div className="space-y-12 my-10 bg-white shadow-lg container mx-auto w-md max-w-2xl px-4 py-8" >
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base/7 font-semibold text-gray-900">Setting Profile For new employee</h2>
           <p className="mt-1 text-sm/6 text-gray-600">
