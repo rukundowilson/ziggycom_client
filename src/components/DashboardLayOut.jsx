@@ -51,7 +51,6 @@ export default function DashboardLayOut() {
           console.error("Authentication error:", error);        
         });
     };
-  checkAuthentication();
   useEffect(() => {
     checkAuthentication();
   }, []);
