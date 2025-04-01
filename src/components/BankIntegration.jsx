@@ -12,13 +12,14 @@ const BankIntegration = () => {
     description: '',
     accountNumber: '',
   });
-  
+  const baseURL = 'https://ziggycom-backend.onrender.com'
+
   const getBanks = async () => {
     try {
       setLoading(true);
       console.log('Loading state:', true); // Debug loading state
 
-      const response = await fetch("http://localhost:8080/bankIntegrationAPI", {
+      const response = await fetch(`${baseURL}/bankIntegrationAPI`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json'
@@ -71,7 +72,7 @@ const BankIntegration = () => {
     setShowForm(false);
 
     try {
-      const response = await fetch("http://localhost:8080/bankIntegrationAPI", {
+      const response = await fetch(`${baseURL}/bankIntegrationAPI`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

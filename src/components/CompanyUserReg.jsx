@@ -6,12 +6,13 @@ function compUserRegister() {
     const [companyEmail, setCompEmail] = useState("");
     const [country, setCountry] = useState("");
     const [currency, setCurrency] = useState("");
+    const baseURL = 'https://ziggycom-backend.onrender.com'
 
     const formIsSubmitted = (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
         axios
             .post(
-                "http://localhost:8080/payroll/new/user",
+                `${baseURL}/payroll/new/user`,
                 { 
                     compName: companyName, 
                     compEmail: companyEmail, 
@@ -20,27 +21,26 @@ function compUserRegister() {
                 },
                 {
                     headers: {
-                        "Content-Type": "application/json", // Ensure the backend expects JSON
+                        "Content-Type": "application/json",
                     },
                 }
             )
             .then((response) => {
-                console.log("Response:", response.data); // Handle the response here
+                console.log("Response:", response.data);
                 alert("Form submitted successfully!");
             })
             .catch((error) => {
-                console.error("There was an error:", error); // Handle errors
+                console.error("There was an error:", error);
                 alert("An error occurred while submitting the form.");
             });
     };
 
     useEffect(() => {
-        // Log the values when they change
         console.log("Company Name:", companyName);
         console.log("Company Email:", companyEmail);
         console.log("Country:", country);
         console.log("Currency:", currency);
-    }, [companyName, companyEmail, country, currency]); // Run whenever any of these state variables change
+    }, [companyName, companyEmail, country, currency]);
 
     return (
         <>

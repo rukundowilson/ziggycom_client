@@ -16,6 +16,7 @@ export default function NewEmployee() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [departmentsWarning,setDeprtmentsWarning] = useState({warning: ""})
   const [jobTitlesWarning,SetjobTitlesWarning] = useState({warning : ""})
+  const baseURL = 'https://ziggycom-backend.onrender.com'
 
 
   const [allData, setAllData] = useState({
@@ -97,7 +98,7 @@ console.log(allData);
   }, [selectedDepartment]);
 
   const getDepartments = async () => {
-    const response = await fetch('http://localhost:8080/departments', {
+    const response = await fetch(`${baseURL}/departments`, {
       method: "GET",
       credentials: 'include'
     })
@@ -116,7 +117,7 @@ console.log(allData);
 
   const getContracts = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/employee/${selectedDepartment}`, {
+      const response = await fetch(`${baseURL}/employee/${selectedDepartment}`, {
         method: 'GET',
         credentials: 'include'
       })
@@ -142,7 +143,7 @@ console.log(allData);
       console.log("Preparing to submit employee data:", allData);
       console.log("Selected department ID:", selectedDepartment);
 
-        const submitResponse = await fetch(`http://localhost:8080/new-employee/${selectedDepartment}`, {
+        const submitResponse = await fetch(`${baseURL}/new-employee/${selectedDepartment}`, {
           method: "POST",
           credentials: "include",
           headers: {

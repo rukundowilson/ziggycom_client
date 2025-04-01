@@ -14,6 +14,7 @@ const EmployeeList = () => {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const baseURL = 'https://ziggycom-backend.onrender.com'
 
   // get data from navigations
   const location = useLocation();
@@ -29,7 +30,7 @@ const EmployeeList = () => {
   const fetchAllEmployees = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:8080/all/employees', {
+      const response = await fetch(`${baseURL}/all/employees`, {
         method: "GET",
         credentials: "include"
       });
@@ -69,7 +70,7 @@ const EmployeeList = () => {
     setIsModalOpen(true);
     const employeeId = event.currentTarget.getAttribute('value');
     try {
-      const response = await fetch(`http://localhost:8080/employee-profile/${employeeId}`, {
+      const response = await fetch(`${baseURL}/employee-profile/${employeeId}`, {
         method: 'GET',
         credentials: 'include'
       });
@@ -142,7 +143,7 @@ const EmployeeList = () => {
     });
 
   return (
-    <div className="w-full max-w-6xl bg-white rounded-xl shadow-lg">
+    <div className="w-full my-17 max-w-6xl bg-white rounded-xl shadow-lg">
       {showToast && (
         <Toast 
           message={toastMessage}
