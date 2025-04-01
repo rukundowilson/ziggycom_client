@@ -143,7 +143,7 @@ const EmployeeList = () => {
     });
 
   return (
-    <div className="w-full my-17 max-w-6xl bg-white rounded-xl shadow-lg">
+    <div className="w-full my-20 max-w-6xl bg-white rounded-xl shadow-lg">
       {showToast && (
         <Toast 
           message={toastMessage}
