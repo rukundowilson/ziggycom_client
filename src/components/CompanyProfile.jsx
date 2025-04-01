@@ -30,7 +30,7 @@ const CompanyProfile = () => {
   },[])
   console.log("about company: ",CompanyProfile)
   return (
-    <div className="bg-white rounded-sm overflow-hidden w-full max-w-2xl mx-auto border border-gray-200">
+    <div className="bg-white my-20 rounded-sm overflow-hidden w-full max-w-2xl mx-auto border border-gray-200">
       {/* Header */}
 
       <div className="bg-gray-700 text-white p-4">

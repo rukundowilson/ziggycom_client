@@ -203,7 +203,7 @@ const DepartmentNavigation = () => {
   }, [newDepartment,open,!open]);  
 
   return (
-    <div className="max-w-2xl  mx-auto bg-white shadow-lg rounded-md p-6 space-y-6">
+    <div className="max-w-2xl my-20 mx-auto bg-white shadow-lg rounded-md p-6 space-y-6">
       {/* Toast Messages */}
       {error && <Toast message={error} type="error" onClose={clearError} duration={7000} />}
       {success && <Toast message={success} type="success" onClose={clearSuccess} duration={7000} />}
