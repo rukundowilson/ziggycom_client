@@ -39,10 +39,10 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
+    setLoading(true);
     console.log("Form submitted", credentials); // Debugging log
     try {
       const response = await axiosInstance.post('/login', credentials);
-      setLoading(true);
       console.log("API response received", response); // Debugging log
       const { message, user } = response.data;
 
