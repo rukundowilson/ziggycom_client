@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Toast from './Toast';
+import Loading from './ui/Loading';
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ 
@@ -9,6 +10,7 @@ export default function Login() {
     password: '' 
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const axiosInstance = axios.create({
     baseURL: 'https://ziggycom-backend.onrender.com',
@@ -40,6 +42,7 @@ export default function Login() {
     console.log("Form submitted", credentials); // Debugging log
     try {
       const response = await axiosInstance.post('/login', credentials);
+      setLoading(true);
       console.log("API response received", response); // Debugging log
       const { message, user } = response.data;
 
@@ -57,7 +60,17 @@ export default function Login() {
       
       console.error("Login error:", error);
     }
+    finally {
+      setLoading(false);
+    }
   };
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <Loading />
+      </div>
+    );
+  }
 
     // toast handlers
   return (
