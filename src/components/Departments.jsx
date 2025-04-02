@@ -97,7 +97,7 @@ const DepartmentNavigation = () => {
     }
   
     try {
-      const response = await fetch(`${baseURL}/${selectedDepartment.id}/jobs`, {
+      const response = await fetch(`${baseURL}/department/${selectedDepartment.id}/jobs`, {
         method: 'POST',
         credentials: 'include',
         headers: {
