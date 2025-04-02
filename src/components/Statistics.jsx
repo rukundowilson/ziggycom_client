@@ -13,46 +13,7 @@ import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 
 // Sample employee payment data
 const employeePaymentData = [
-  {
-    month: 'Jan 2024',
-    John: 6000,
-    Sarah: 3500,
-    Mike: 2800,
-    Emily: 3200,
-    David: 2900
-  },
-  {
-    month: 'Feb 2024',
-    John: 3100,
-    Sarah: 3600,
-    Mike: 2900,
-    Emily: 3300,
-    David: 3000
-  },
-  {
-    month: 'Mar 2024',
-    John: 3250,
-    Sarah: 3750,
-    Mike: 3050,
-    Emily: 3450,
-    David: 3150
-  },
-  {
-    month: 'Apr 2024',
-    John: 3400,
-    Sarah: 3900,
-    Mike: 3200,
-    Emily: 3600,
-    David: 3300
-  },
-  {
-    month: 'May 2024',
-    John: 3550,
-    Sarah: 4050,
-    Mike: 3350,
-    Emily: 3750,
-    David: 3450
-  }
+  
 ];
 
 const EmployeePaymentTrends = ({ data = employeePaymentData }) => {
