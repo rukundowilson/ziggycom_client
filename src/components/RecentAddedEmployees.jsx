@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { UserIcon } from 'lucide-react';
 
 // Sample user data
+const baseURL = 'https://ziggycom-backend.onrender.com'
+const [employees, setEmployees] = useState([]);
 const sampleUsers = [
   { 
     id: 1,
@@ -29,7 +31,44 @@ const sampleUsers = [
   }
 ];
 
-const RecentAddedEmployees_ = ({ users = sampleUsers }) => {
+// get all recent hired employees
+const hired = async () => {
+  try {
+    const response = await fetch(`${baseURL}/all/employees`, {
+      method: "GET",
+      credentials: "include"
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error:', errorData.error || 'Unknown error');
+      return;
+    }
+
+    const data = await response.json();
+    const employeesData = data.result || [];
+    console.log('Raw employee data:', employeesData); // Debug log
+
+    const formattedEmployees = employeesData.map(item => ({
+      id: item.employee_id,
+      name: item.first_name,
+      role: item.job_title || '',
+      department: item.department_name || '',
+      email: item.email || '',
+      status: item.status || ''
+    }));
+
+    console.log('Formatted employees:', formattedEmployees); // Debug log
+    setEmployees(formattedEmployees);
+  } catch (error) {
+    console.error("Failed to fetch employees:", error.message);
+  }
+};
+useEffect(()=>{
+  hired();
+},[])
+
+const RecentAddedEmployees_ = ({ users = employees }) => {
   return (
     <div className="w-full space-y-3">
       {users.length === 0 ? (

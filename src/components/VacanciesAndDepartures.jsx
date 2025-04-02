@@ -200,8 +200,9 @@ const VacancyAndDepartures = () => {
           </button>
         </div>
       </div>
-            {/* recent added employees */}
-            <RecentAddedEmployees_/>
+      
+      {/* recent added employees */}
+      <RecentAddedEmployees_/>
 
     </div>
   );
