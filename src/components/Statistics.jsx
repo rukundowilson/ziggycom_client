@@ -15,43 +15,43 @@ import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 const employeePaymentData = [
   {
     month: 'Jan 2024',
-    John: 6000,
-    Sarah: 3500,
-    Mike: 2800,
-    Emily: 3200,
-    David: 2900
+    John: 0,
+    Sarah: 0,
+    Mike: 0,
+    Emily: 0,
+    David: 0
   },
   {
     month: 'Feb 2024',
-    John: 3100,
-    Sarah: 3600,
-    Mike: 2900,
-    Emily: 3300,
-    David: 3000
+    John: 0,
+    Sarah: 0,
+    Mike: 0,
+    Emily: 0,
+    David: 0
   },
   {
     month: 'Mar 2024',
-    John: 3250,
-    Sarah: 3750,
-    Mike: 3050,
-    Emily: 3450,
-    David: 3150
+    John: 0,
+    Sarah: 0,
+    Mike: 0,
+    Emily: 0,
+    David: 0
   },
   {
     month: 'Apr 2024',
-    John: 3400,
-    Sarah: 3900,
-    Mike: 3200,
-    Emily: 3600,
-    David: 3300
+    John: 0,
+    Sarah: 0,
+    Mike: 0,
+    Emily: 0,
+    David: 0
   },
   {
     month: 'May 2024',
-    John: 3550,
-    Sarah: 4050,
-    Mike: 3350,
-    Emily: 3750,
-    David: 3450
+    John: 0,
+    Sarah: 0,
+    Mike: 0,
+    Emily: 0,
+    David: 0
   }
 ];
 
@@ -91,11 +91,11 @@ const EmployeePaymentTrends = ({ data = employeePaymentData }) => {
             <YAxis label={{ value: 'Salary ($)', angle: -90, position: 'insideLeft' }} />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="John" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="Sarah" stroke="#82ca9d" />
-            <Line type="monotone" dataKey="Mike" stroke="#ffc658" />
-            <Line type="monotone" dataKey="Emily" stroke="#ff7300" />
-            <Line type="monotone" dataKey="David" stroke="#0088fe" />
+            <Line type="monotone" dataKey="no data" stroke="#8884d8" activeDot={{ r: 8 }} />
+            <Line type="monotone" dataKey="un defined" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="un defined" stroke="#ffc658" />
+            <Line type="monotone" dataKey="un defined" stroke="#ff7300" />
+            <Line type="monotone" dataKey="un defined" stroke="#0088fe" />
           </LineChart>
         </ResponsiveContainer>
         
