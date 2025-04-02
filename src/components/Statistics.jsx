@@ -15,43 +15,43 @@ import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 const employeePaymentData = [
   {
     month: 'Jan 2024',
-    John: 0,
-    Sarah: 0,
-    Mike: 0,
-    Emily: 0,
-    David: 0
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0
   },
   {
     month: 'Feb 2024',
-    John: 0,
-    Sarah: 0,
-    Mike: 0,
-    Emily: 0,
-    David: 0
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0
   },
   {
     month: 'Mar 2024',
-    John: 0,
-    Sarah: 0,
-    Mike: 0,
-    Emily: 0,
-    David: 0
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0
   },
   {
     month: 'Apr 2024',
-    John: 0,
-    Sarah: 0,
-    Mike: 0,
-    Emily: 0,
-    David: 0
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0
   },
   {
-    month: 'May 2024',
-    John: 0,
-    Sarah: 0,
-    Mike: 0,
-    Emily: 0,
-    David: 0
+    null: 'May 2024',
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0,
+    null: 0
   }
 ];
 
