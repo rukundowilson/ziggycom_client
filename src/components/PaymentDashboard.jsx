@@ -206,7 +206,7 @@ const PaymentDashboard_ = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="bg-white rounded-lg shadow">
+      <div className="bg-white my-20 rounded-lg shadow">
         <div className="p-6 flex items-center justify-between border-b">
           <h2 className="text-2xl font-bold">Payment History</h2>
           <button
