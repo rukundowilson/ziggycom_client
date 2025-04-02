@@ -4,7 +4,7 @@ import { UserIcon } from 'lucide-react';
 
 // Sample user data
 const baseURL = 'https://ziggycom-backend.onrender.com'
-const [employees, setEmployees] = useState([]);
+const [employees, setEmployees] = useState();
 const sampleUsers = [
   { 
     id: 1,
@@ -66,7 +66,7 @@ const hired = async () => {
   }
 };
 useEffect(()=>{
-  hired();
+  // hired();
 },[])
 
 const RecentAddedEmployees_ = ({ users = employees }) => {
