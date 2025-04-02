@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { UserIcon } from 'lucide-react';
 
 // Sample user data
