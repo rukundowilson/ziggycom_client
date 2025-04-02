@@ -66,7 +66,7 @@ const DepartmentNavigation = () => {
   };
   const fetchDepartmentJobs = async () => {
     try {
-      const response = await fetch(`${baseURL}/${selectedDepartment.id}/all-jobs`,{
+      const response = await fetch(`${baseURL}/department/${selectedDepartment.id}/all-jobs`,{
         method: 'GET',
         credentials: 'include',
         headers: {
