@@ -79,7 +79,7 @@ const PaymentDashboard_ = () => {
   // Modal Component
   const PaymentModal = () => (
     <div className={`my-20 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${isModalOpen ? '' : 'hidden'}`}>
-      <div className="bg-white rounded-lg w-full max-w-lg m-4 p-6">
+      <div className="bg-white my-20 rounded-md w-full max-w-lg m-4 p-6">
         {step === 'form' ? (
           <>
             <h2 className="text-2xl font-bold mb-4">Send Payment</h2>
