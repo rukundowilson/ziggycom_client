@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { UserIcon } from 'lucide-react';
 
 // Sample user data
-const baseURL = 'https://ziggycom-backend.onrender.com'
-const [employees, setEmployees] = useState();
 const sampleUsers = [
   { 
     id: 1,
@@ -32,44 +30,50 @@ const sampleUsers = [
   }
 ];
 
-// get all recent hired employees
-const hired = async () => {
-  try {
-    const response = await fetch(`${baseURL}/all/employees`, {
-      method: "GET",
-      credentials: "include"
-    });
+const RecentAddedEmployees_ = () => {
+  const [users, setEmployees] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const baseURL = 'https://ziggycom-backend.onrender.com'
+  // get all recent hired employees
+  const hired = async () => {
+      try {
+        const response = await fetch(`${baseURL}/all/employees`, {
+          method: "GET",
+          credentials: "include"
+        });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error:', errorData.error || 'Unknown error');
-      return;
-    }
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error('Error:', errorData.error || 'Unknown error');
+          return;
+        }
 
-    const data = await response.json();
-    const employeesData = data.result || [];
-    console.log('Raw employee data:', employeesData); // Debug log
+        const data = await response.json();
+        const employeesData = data.result || [];
+        console.log('Raw employee data:', employeesData); // Debug log
 
-    const formattedEmployees = employeesData.map(item => ({
-      id: item.employee_id,
-      name: item.first_name,
-      role: item.job_title || '',
-      department: item.department_name || '',
-      email: item.email || '',
-      status: item.status || ''
-    }));
+        const formattedEmployees = employeesData.map(item => ({
+          id: item.employee_id,
+          name: item.first_name,
+          role: item.job_title || '',
+          department: item.department_name || '',
+          email: item.email || '',
+          status: item.status || ''
+        }));
 
-    console.log('Formatted employees:', formattedEmployees); // Debug log
-    setEmployees(formattedEmployees);
-  } catch (error) {
-    console.error("Failed to fetch employees:", error.message);
-  }
-};
-useEffect(()=>{
-  // hired();
-},[])
+        console.log('Formatted employees:', formattedEmployees); // Debug log
+        setEmployees(formattedEmployees);
+      } catch (error) {
+        console.error("Failed to fetch employees:", error.message);
+      }
+    };
+    useEffect(()=>{
+      hired();
+    },[])
 
-const RecentAddedEmployees_ = ({ users = employees }) => {
+
   return (
     <div className="w-full space-y-3">
       {users.length === 0 ? (
