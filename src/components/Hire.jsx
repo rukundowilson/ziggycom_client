@@ -133,7 +133,7 @@ console.log(allData);
       setjobTitles(employeeSettings.jobTitles)
     }
     catch (error) {
-      console.log("error while getting contracts from backend", error)
+      console.log("error while getting contracts from backend", error);
     }
   }
   if (Loading) {

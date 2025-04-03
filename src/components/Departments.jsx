@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Plus, Briefcase, Trash2, X } from "lucide-react";
 import Toast from "./Toast";
-
+import LoadingState from "../ui/LoadingComponent";
 const DepartmentNavigation = () => {
   const [departments, setDepartments] = useState([]);
   const [open, setOpen] = useState(false);
@@ -66,6 +66,7 @@ const DepartmentNavigation = () => {
   };
   const fetchDepartmentJobs = async () => {
     try {
+      setLoading(true)
       const response = await fetch(`${baseURL}/department/${selectedDepartment.id}/all-jobs`,{
         method: 'GET',
         credentials: 'include',
@@ -88,6 +89,9 @@ const DepartmentNavigation = () => {
       console.error("Error fetching department jobs:", error);
       alert("Failed to fetch jobs for this department.");
     }
+    finally{
+      setLoading(false)
+    }
   };
 
   const handleAddJob = async () => {
@@ -97,6 +101,7 @@ const DepartmentNavigation = () => {
     }
   
     try {
+      setLoading(true)
       const response = await fetch(`${baseURL}/department/${selectedDepartment.id}/jobs`, {
         method: 'POST',
         credentials: 'include',
@@ -129,6 +134,9 @@ const DepartmentNavigation = () => {
     } catch (error) {
       console.error("Error adding job:", error);
     }
+    finally{
+      setLoading(false)
+    }
   };
 
   const handleOpenJobModal = (department) => {
@@ -148,7 +156,7 @@ const DepartmentNavigation = () => {
       setError("Please enter a valid department name.")
       return;
     }
-  
+    setLoading(true)  
     try {
       const response = await fetch(`${baseURL}/new/department`, {
         method: 'POST',
@@ -189,6 +197,9 @@ const DepartmentNavigation = () => {
       console.error("Error adding department:", error);
       alert("Failed to add the department. Check the console for details.");
     }
+    finally{
+      setLoading(false)
+    }
   };
 
   const handleCloseAdd = ()=>{
@@ -201,7 +212,11 @@ const DepartmentNavigation = () => {
   useEffect(() => {
     getAllDepartment();
   }, [newDepartment,open,!open]);  
-
+  if ( Loading ){
+    return(
+      <LoadingState/>
+    )
+  }
   return (
     <div className="max-w-2xl my-20 mx-auto bg-white shadow-lg rounded-md p-6 space-y-6">
       {/* Toast Messages */}
