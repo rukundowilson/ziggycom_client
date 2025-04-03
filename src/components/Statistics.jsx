@@ -1,3 +1,4 @@
+import React,{useState} from 'react';
 import React from 'react';
 import { 
   LineChart, 
@@ -10,6 +11,7 @@ import {
   ResponsiveContainer 
 } from 'recharts';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
+
 
 // Sample employee payment data
 const employeePaymentData = [

@@ -1,6 +1,6 @@
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import React, { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EmployeeProfilePreview from './EmployeeProfile';
 import { useNavigate } from 'react-router';
 import Toast from "./Toast";
@@ -16,6 +16,7 @@ export default function NewEmployee() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [departmentsWarning,setDeprtmentsWarning] = useState({warning: ""})
   const [jobTitlesWarning,SetjobTitlesWarning] = useState({warning : ""})
+  const [Loading, setLoading] = useState(false);
   const baseURL = 'https://ziggycom-backend.onrender.com'
 
 
@@ -135,10 +136,19 @@ console.log(allData);
       console.log("error while getting contracts from backend", error)
     }
   }
+  if (Loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="loader"></div>
+        <div className='text-center'>Loading...</div>
+      </div>
+    );
+  }
 
   const handleEmploySubmit = async (event) => {
     event.preventDefault();
     validateForm()
+    setLoading(true);
     try {
       console.log("Preparing to submit employee data:", allData);
       console.log("Selected department ID:", selectedDepartment);
@@ -165,6 +175,9 @@ console.log(allData);
         clearError()
     } catch (error) {
       console.error("Error submitting employee data:", error);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
