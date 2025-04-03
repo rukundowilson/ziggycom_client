@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Plus, Briefcase, Trash2, X } from "lucide-react";
 import Toast from "./Toast";
-import LoadingState from "../ui/LoadingComponent";
+import LoadingState from "./ui/LoadingComponent";
 const DepartmentNavigation = () => {
   const [departments, setDepartments] = useState([]);
   const [open, setOpen] = useState(false);
