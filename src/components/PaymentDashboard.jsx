@@ -224,7 +224,7 @@ const PaymentDashboard_ = () => {
               placeholder="Search by employee or notes..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg"
+              className="w-full pl-10 pr-4 py-2 rounded-lg"
             />
           </div>
           
