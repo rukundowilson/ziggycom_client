@@ -212,7 +212,7 @@ const DepartmentNavigation = () => {
   useEffect(() => {
     getAllDepartment();
   }, [newDepartment,open,!open]);  
-  if ( Loading ){
+  if ( loading ){
     return(
       <LoadingState/>
     )
