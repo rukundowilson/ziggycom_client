@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import React, { useEffect, useState } from 'react';
 import EmployeeProfilePreview from './EmployeeProfile';
