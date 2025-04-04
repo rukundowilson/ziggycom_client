@@ -14,12 +14,7 @@ const PaymentDashboard_ = () => {
   });
 
   // Sample payment history data
-  const [paymentHistory, setPaymentHistory] = useState([
-    // { id: 1, employeeName: 'John Doe', amount: 2500, date: '2025-02-18', status: 'Completed', notes: 'February Salary' },
-    // { id: 2, employeeName: 'Jane Smith', amount: 3000, date: '2025-02-18', status: 'Completed', notes: 'Monthly Bonus' },
-    // { id: 3, employeeName: 'Mike Johnson', amount: 1800, date: '2025-02-17', status: 'Completed', notes: 'Overtime Pay' },
-    // { id: 4, employeeName: 'Sarah Wilson', amount: 2200, date: '2025-02-17', status: 'Completed', notes: 'Regular Salary' }
-  ]);
+  const [paymentHistory, setPaymentHistory] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
