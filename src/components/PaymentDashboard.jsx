@@ -15,10 +15,10 @@ const PaymentDashboard_ = () => {
 
   // Sample payment history data
   const [paymentHistory, setPaymentHistory] = useState([
-    { id: 1, employeeName: 'John Doe', amount: 2500, date: '2025-02-18', status: 'Completed', notes: 'February Salary' },
-    { id: 2, employeeName: 'Jane Smith', amount: 3000, date: '2025-02-18', status: 'Completed', notes: 'Monthly Bonus' },
-    { id: 3, employeeName: 'Mike Johnson', amount: 1800, date: '2025-02-17', status: 'Completed', notes: 'Overtime Pay' },
-    { id: 4, employeeName: 'Sarah Wilson', amount: 2200, date: '2025-02-17', status: 'Completed', notes: 'Regular Salary' }
+    // { id: 1, employeeName: 'John Doe', amount: 2500, date: '2025-02-18', status: 'Completed', notes: 'February Salary' },
+    // { id: 2, employeeName: 'Jane Smith', amount: 3000, date: '2025-02-18', status: 'Completed', notes: 'Monthly Bonus' },
+    // { id: 3, employeeName: 'Mike Johnson', amount: 1800, date: '2025-02-17', status: 'Completed', notes: 'Overtime Pay' },
+    // { id: 4, employeeName: 'Sarah Wilson', amount: 2200, date: '2025-02-17', status: 'Completed', notes: 'Regular Salary' }
   ]);
 
   const handleInputChange = (e) => {
@@ -75,6 +75,13 @@ const PaymentDashboard_ = () => {
     payment.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     payment.notes.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  if(paymentHistory.length === 0){
+    return (
+      <>
+        no data to display
+      </>
+    )
+  }
 
   // Modal Component
   const PaymentModal = () => (
