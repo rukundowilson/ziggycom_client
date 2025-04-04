@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { DollarSign, User, Calendar, MessageSquare, Search, Plus } from 'lucide-react';
+import NoPaymentsFound from "./ui/NullPaymentHistoryDir"
 
 const PaymentDashboard_ = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,9 +73,7 @@ const PaymentDashboard_ = () => {
   );
   if(paymentHistory.length === 0){
     return (
-      <>
-        no data to display
-      </>
+      <NoPaymentsFound/>
     )
   }
 
