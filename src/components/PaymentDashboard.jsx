@@ -24,6 +24,24 @@ const PaymentDashboard_ = () => {
     }));
   };
 
+  if(paymentHistory.length === 0){
+    return (
+      <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg border border-gray-200 my-20">
+        <div className="flex items-center justify-center bg-gray-100 p-4 rounded-full mb-4">
+          <AlertCircle size={32} className="text-gray-500" />
+        </div>
+        <h3 className="text-lg font-medium text-gray-900 mb-2">No payments found</h3>
+        <p className="text-gray-500 text-center mb-6">We couldn't find any payments associated with your account.</p>
+        <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+          >
+            <Plus className="h-4 w-4" /> New Payment
+          </button>
+      </div>
+    )
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setStep('confirmation');
@@ -70,6 +88,7 @@ const PaymentDashboard_ = () => {
     payment.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     payment.notes.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   // Modal Component
   const PaymentModal = () => (
     <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${isModalOpen ? '' : 'hidden'}`}>
@@ -257,23 +276,5 @@ const PaymentDashboard_ = () => {
     </div>
   );
 };
-
-if(paymentHistory.length === 0){
-  return (
-    <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg border border-gray-200 my-20">
-      <div className="flex items-center justify-center bg-gray-100 p-4 rounded-full mb-4">
-        <AlertCircle size={32} className="text-gray-500" />
-      </div>
-      <h3 className="text-lg font-medium text-gray-900 mb-2">No payments found</h3>
-      <p className="text-gray-500 text-center mb-6">We couldn't find any payments associated with your account.</p>
-      <button
-          onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
-        >
-          <Plus className="h-4 w-4" /> New Payment
-        </button>
-    </div>
-  )
-}
 
 export default PaymentDashboard_;
