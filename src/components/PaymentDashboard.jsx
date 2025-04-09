@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DollarSign, User, Calendar, MessageSquare, Search, Plus, AlertCircle } from 'lucide-react';
 
 const PaymentDashboard_ = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [step, setStep] = useState('form');
   const [searchTerm, setSearchTerm] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
