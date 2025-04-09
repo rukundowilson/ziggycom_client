@@ -3,7 +3,7 @@ import { AlertCircle } from 'lucide-react';
 
 const NoPaymentsFound = () => {
   return (
-    <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg my-20 border border-gray-200 my-6">
+    <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg pt-20 border border-gray-200 my-6">
       <div className="flex items-center justify-center bg-gray-100 p-4 rounded-full mb-4">
         <AlertCircle size={32} className="text-gray-500" />
       </div>
