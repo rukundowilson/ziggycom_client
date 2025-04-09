@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DollarSign, User, Calendar, MessageSquare, Search, Plus } from 'lucide-react';
+import { DollarSign, User, Calendar, MessageSquare, Search, Plus, AlertCircle } from 'lucide-react';
 
 const PaymentDashboard_ = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
