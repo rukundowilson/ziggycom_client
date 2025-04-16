@@ -32,6 +32,12 @@ const PaymentDashboard_ = () => {
         </div>
         <h3 className="text-lg font-medium text-gray-900 mb-2">No payments found</h3>
         <p className="text-gray-500 text-center mb-6">We couldn't find any payments associated with your account.</p>
+        {openModal && (
+          <>
+          <div>test bull shit</div>
+          </>
+          
+        )}
         <button
             onClick={() => setIsModalOpen(true)}
             className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
@@ -91,7 +97,7 @@ const PaymentDashboard_ = () => {
 
   // Modal Component
   const PaymentModal = () => (
-    <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${isModalOpen ? '' : 'hidden'}`}>
+    <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center`}>
       <div className="bg-white rounded-md w-full max-w-lg m-4 p-6">
         {step === 'form' ? (
           <>
