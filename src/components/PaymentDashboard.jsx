@@ -33,130 +33,9 @@ const PaymentDashboard_ = () => {
         <h3 className="text-lg font-medium text-gray-900 mb-2">No payments found</h3>
         <p className="text-gray-500 text-center mb-6">We couldn't find any payments associated with your account.</p>
         {isModalOpen && (
-              <div className = {`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center`}>
-              <div className="bg-white rounded-md w-full max-w-lg m-4 p-6">
-                {step === 'form' ? (
-                  <>
-                    <h2 className="text-2xl font-bold mb-4">Send Payment</h2>
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="relative">
-                        <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                        <input
-                          type="text"
-                          name="employeeName"
-                          value={formData.employeeName}
-                          onChange={handleInputChange}
-                          placeholder="Employee Name"
-                          className="w-full pl-10 pr-4 py-2 border rounded-lg"
-                          required
-                        />
-                      </div>
-        
-                      <div className="relative">
-                        <DollarSign className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                        <input
-                          type="number"
-                          name="amount"
-                          value={formData.amount}
-                          onChange={handleInputChange}
-                          placeholder="Amount"
-                          min="0"
-                          step="0.01"
-                          className="w-full pl-10 pr-4 py-2 border rounded-lg"
-                          required
-                        />
-                      </div>
-        
-                      <div className="relative">
-                        <Calendar className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                        <input
-                          type="date"
-                          name="date"
-                          value={formData.date}
-                          onChange={handleInputChange}
-                          className="w-full pl-10 pr-4 py-2 border rounded-lg"
-                          required
-                        />
-                      </div>
-        
-                      <div className="relative">
-                        <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                        <textarea
-                          name="notes"
-                          value={formData.notes}
-                          onChange={handleInputChange}
-                          placeholder="Payment Notes"
-                          className="w-full pl-10 pr-4 py-2 border rounded-lg"
-                          rows="3"
-                        />
-                      </div>
-        
-                      <div className="flex gap-4 mt-6">
-                        <button
-                          onClick={closeModal}
-                          type="button"
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="submit"
-                          className="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
-                        >
-                          Continue
-                        </button>
-                      </div>
-                    </form>
-                  </>
-                ) : (
-                  <>
-                    <h2 className="text-2xl font-bold mb-4">Confirm Payment</h2>
-                    {showSuccess ? (
-                      <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-                        Payment sent successfully!
-                      </div>
-                    ) : (
-                      <div className="space-y-4">
-                        <div className="space-y-2">
-                          <p className="flex justify-between">
-                            <span className="font-medium">Employee:</span>
-                            <span>{formData.employeeName}</span>
-                          </p>
-                          <p className="flex justify-between">
-                            <span className="font-medium">Amount:</span>
-                            <span>${parseFloat(formData.amount).toFixed(2)}</span>
-                          </p>
-                          <p className="flex justify-between">
-                            <span className="font-medium">Date:</span>
-                            <span>{formData.date}</span>
-                          </p>
-                          {formData.notes && (
-                            <div className="mt-4">
-                              <p className="font-medium">Notes: </p>
-                              <p className="mt-1 text-gray-600">{formData.notes}</p>
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex gap-4 mt-6">
-                          <button
-                            onClick={() => setStep('form')}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-                          >
-                            Back
-                          </button>
-                          <button
-                            onClick={handleConfirm}
-                            className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-                          >
-                            Send Payment
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </>
-                )}
-              </div>
-            </div>
+          <>
+            <PaymentModal />
+          </>
           
         )}
         <button
@@ -217,7 +96,132 @@ const PaymentDashboard_ = () => {
   );
 
   // Modal Component
-  
+  const PaymentModal = () => (
+    <div className = {`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center`}>
+      <div className="bg-white rounded-md w-full max-w-lg m-4 p-6">
+        {step === 'form' ? (
+          <>
+            <h2 className="text-2xl font-bold mb-4">Send Payment</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="relative">
+                <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <input
+                  type="text"
+                  name="employeeName"
+                  value={formData.employeeName}
+                  onChange={handleInputChange}
+                  placeholder="Employee Name"
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg"
+                  required
+                />
+              </div>
+
+              <div className="relative">
+                <DollarSign className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <input
+                  type="number"
+                  name="amount"
+                  value={formData.amount}
+                  onChange={handleInputChange}
+                  placeholder="Amount"
+                  min="0"
+                  step="0.01"
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg"
+                  required
+                />
+              </div>
+
+              <div className="relative">
+                <Calendar className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleInputChange}
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg"
+                  required
+                />
+              </div>
+
+              <div className="relative">
+                <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <textarea
+                  name="notes"
+                  value={formData.notes}
+                  onChange={handleInputChange}
+                  placeholder="Payment Notes"
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg"
+                  rows="3"
+                />
+              </div>
+
+              <div className="flex gap-4 mt-6">
+                <button
+                  onClick={closeModal}
+                  type="button"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                >
+                  Continue
+                </button>
+              </div>
+            </form>
+          </>
+        ) : (
+          <>
+            <h2 className="text-2xl font-bold mb-4">Confirm Payment</h2>
+            {showSuccess ? (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                Payment sent successfully!
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <p className="flex justify-between">
+                    <span className="font-medium">Employee:</span>
+                    <span>{formData.employeeName}</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span className="font-medium">Amount:</span>
+                    <span>${parseFloat(formData.amount).toFixed(2)}</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span className="font-medium">Date:</span>
+                    <span>{formData.date}</span>
+                  </p>
+                  {formData.notes && (
+                    <div className="mt-4">
+                      <p className="font-medium">Notes: </p>
+                      <p className="mt-1 text-gray-600">{formData.notes}</p>
+                    </div>
+                  )}
+                </div>
+                <div className="flex gap-4 mt-6">
+                  <button
+                    onClick={() => setStep('form')}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                  >
+                    Back
+                  </button>
+                  <button
+                    onClick={handleConfirm}
+                    className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                  >
+                    Send Payment
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
 
   return (
     <div className="container mx-auto p-4">
