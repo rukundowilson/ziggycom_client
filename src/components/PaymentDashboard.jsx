@@ -32,7 +32,7 @@ const PaymentDashboard_ = () => {
         </div>
         <h3 className="text-lg font-medium text-gray-900 mb-2">No payments found</h3>
         <p className="text-gray-500 text-center mb-6">We couldn't find any payments associated with your account.</p>
-        {openModal && (
+        {isModalOpen && (
           <>
           <div>test bull shit</div>
           </>
