@@ -24,30 +24,6 @@ const PaymentDashboard_ = () => {
     }));
   };
 
-  if(paymentHistory.length === 0){
-    return (
-      <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg border border-gray-200 my-20">
-        <div className="flex items-center justify-center bg-gray-100 p-4 rounded-full mb-4">
-          <AlertCircle size={32} className="text-gray-500" />
-        </div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No payments found</h3>
-        <p className="text-gray-500 text-center mb-6">We couldn't find any payments associated with your account.</p>
-        {isModalOpen && (
-          <>
-          <div>test bull shit</div>
-          </>
-          
-        )}
-        <button
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
-          >
-            <Plus className="h-4 w-4" /> New Payment
-          </button>
-      </div>
-    )
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setStep('confirmation');
@@ -97,7 +73,7 @@ const PaymentDashboard_ = () => {
 
   // Modal Component
   const PaymentModal = () => (
-    <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center`}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white rounded-md w-full max-w-lg m-4 p-6">
         {step === 'form' ? (
           <>
@@ -223,62 +199,83 @@ const PaymentDashboard_ = () => {
     </div>
   );
 
+  // Empty state component
+  const EmptyState = () => (
+    <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg border border-gray-200 my-20">
+      <div className="flex items-center justify-center bg-gray-100 p-4 rounded-full mb-4">
+        <AlertCircle size={32} className="text-gray-500" />
+      </div>
+      <h3 className="text-lg font-medium text-gray-900 mb-2">No payments found</h3>
+      <p className="text-gray-500 text-center mb-6">We couldn't find any payments associated with your account.</p>
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+      >
+        <Plus className="h-4 w-4" /> New Payment
+      </button>
+    </div>
+  );
+
   return (
     <div className="container mx-auto p-4">
-      <div className="bg-white my-20 rounded-lg shadow">
-        <div className="p-6 flex items-center justify-between border-b">
-          <h2 className="text-2xl font-bold">Payment History</h2>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
-          >
-            <Plus className="h-4 w-4" /> New Payment
-          </button>
-        </div>
-        <div className="p-6">
-          <div className="relative mb-6">
-            <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search by employee or notes..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-lg"
-            />
+      {paymentHistory.length === 0 ? (
+        <EmptyState />
+      ) : (
+        <div className="bg-white my-20 rounded-lg shadow">
+          <div className="p-6 flex items-center justify-between border-b">
+            <h2 className="text-2xl font-bold">Payment History</h2>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+            >
+              <Plus className="h-4 w-4" /> New Payment
+            </button>
           </div>
-          
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b">
-                  <th className="py-2 text-left">Date</th>
-                  <th className="py-2 text-left">Employee</th>
-                  <th className="py-2 text-right">Amount</th>
-                  <th className="py-2 text-left">Status</th>
-                  <th className="py-2 text-left">Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredHistory.map((payment) => (
-                  <tr key={payment.id} className="border-b hover:bg-gray-50">
-                    <td className="py-2">{new Date(payment.date).toLocaleDateString()}</td>
-                    <td className="py-2">{payment.employeeName}</td>
-                    <td className="py-2 text-right">${payment.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                    <td className="py-2">
-                      <span className="px-2 py-1 text-sm rounded-full bg-green-100 text-green-800">
-                        {payment.status}
-                      </span>
-                    </td>
-                    <td className="py-2 text-gray-600">{payment.notes}</td>
+          <div className="p-6">
+            <div className="relative mb-6">
+              <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search by employee or notes..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border rounded-lg"
+              />
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b">
+                    <th className="py-2 text-left">Date</th>
+                    <th className="py-2 text-left">Employee</th>
+                    <th className="py-2 text-right">Amount</th>
+                    <th className="py-2 text-left">Status</th>
+                    <th className="py-2 text-left">Notes</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredHistory.map((payment) => (
+                    <tr key={payment.id} className="border-b hover:bg-gray-50">
+                      <td className="py-2">{new Date(payment.date).toLocaleDateString()}</td>
+                      <td className="py-2">{payment.employeeName}</td>
+                      <td className="py-2 text-right">${payment.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                      <td className="py-2">
+                        <span className="px-2 py-1 text-sm rounded-full bg-green-100 text-green-800">
+                          {payment.status}
+                        </span>
+                      </td>
+                      <td className="py-2 text-gray-600">{payment.notes}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       
-      <PaymentModal />
+      {isModalOpen && <PaymentModal />}
     </div>
   );
 };
