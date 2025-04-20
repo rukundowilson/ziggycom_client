@@ -43,8 +43,10 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-            <NavBar/>
-            <LandingPage/>
+            <NavBar/> 
+            <div>
+                <LandingPage/>
+            </div>
             </>
           } />
           <Route path="/register" element = {

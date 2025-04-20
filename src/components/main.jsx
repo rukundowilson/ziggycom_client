@@ -34,8 +34,8 @@ const LandingPage = () => {
              style={{
            backgroundImage: "url('/man.jpeg')", // Replace with your image path
            backgroundSize: 'cover',
-           backgroundPosition: 'center',
-           backgroundRepeat: 'no-repeat'
+           backgroundPosition: 'bottom',
+           backgroundRepeat: 'no-repeat',
              }}>
           <div className="absolute inset-0 bg-black bg-opacity-50" /> {/* Dark overlay */}
           <div className="max-w-6xl mx-auto px-4">
