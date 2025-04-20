@@ -29,42 +29,48 @@ const LandingPage = () => {
   return (
     <div className="bg-white min-h-screen">
      
-      {/* Hero Section with Animated Background */}
-      <div className="relative bg-gradient-to-r from-gray-100 to-blue-50 py-20 overflow-hidden pt-[200px]">
-        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center relative">
-            <div className="animate-fade-in-up">
-              <h1 className="text-5xl font-bold text-gray-900 mb-6">
-                Simplify Your 
-                <span className="text-blue-600"> Payroll </span>
-                Management
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Streamline employee management and payments in one powerful dashboard
-              </p>
-            </div>
+      {/* Hero Section with Background Image */}
+        <div className="relative py-20 overflow-hidden pt-[200px]"
+             style={{
+           backgroundImage: "url('/man.jpeg')", // Replace with your image path
+           backgroundSize: 'cover',
+           backgroundPosition: 'center',
+           backgroundRepeat: 'no-repeat'
+             }}>
+          <div className="absolute inset-0 bg-black bg-opacity-50" /> {/* Dark overlay */}
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center relative">
+          <div className="animate-fade-in-up">
+            <h1 className="text-5xl font-bold text-white mb-6">
+              Simplify Your 
+              <span className="text-blue-400"> Payroll </span>
+              Management
+            </h1>
+            <p className="text-xl text-gray-200 mb-8">
+              Streamline employee management and payments in one powerful dashboard
+            </p>
+          </div>
 
-            {/* Stats */}
-            <div className="w-full mt-16 grid grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">10k+</div>
-                <div className="text-gray-600">Active Users</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">99.9%</div>
-                <div className="text-gray-600">Accuracy Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">30%</div>
-                <div className="text-gray-600">Time Saved</div>
-              </div>
+          {/* Stats */}
+          <div className="w-full mt-16 grid grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400">10k+</div>
+              <div className="text-gray-200">Active Users</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400">99.9%</div>
+              <div className="text-gray-200">Accuracy Rate</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400">30%</div>
+              <div className="text-gray-200">Time Saved</div>
+            </div>
+          </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Features Section with Hover Effects */}
+        {/* Features Section with Hover Effects */}
       <div className="py-16 max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
